@@ -1,33 +1,50 @@
 import React from "react";
-import { StyleSheet, Dimensions, View, Text, Image } from "react-native";
+import {
+  StyleSheet,
+  Dimensions,
+  View,
+  Text,
+  Image,
+  Pressable,
+} from "react-native";
 
 const windowWidth = Dimensions.get("window").width; //It's provides your component width equals to screen width.
 export const Chat = ({
+  navigation,
+  id,
   recieverName,
+  messages,
   lastUpdateDate,
   lastMessage,
-  profilePhoto,
+  profilePhoto
 }) => {
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: profilePhoto }} />
-      <View
-        style={[
-          styles.chatWrapper,
-          recieverName
-            ? { borderBottomWidth: 1, borderBottomColor: "#D5D0D0" }
-            : "", // I should check recieverName because even if It's empty, borderBottom will appear and I want to avoid that behavior.
-        ]}
-      >
-        <View>
-          <View style={styles.recieverNameAndDateWrapper}>
-            <Text style={styles.recieverName}>{recieverName}</Text>
-            <Text style={styles.date}>{lastUpdateDate}</Text>
+    <Pressable onPress={() => navigation.navigate('ChatDetail', {
+      messageId: id,
+      recieverName: recieverName,
+      messages: messages,
+      profilePhoto: profilePhoto
+    })}>
+      <View style={styles.container}>
+        <Image style={styles.profilePhoto} source={{ uri: profilePhoto }} />
+        <View
+          style={[
+            styles.chatWrapper,
+            recieverName
+              ? { borderBottomWidth: 1, borderBottomColor: "#D5D0D0" }
+              : "", // I should check recieverName because even if It's empty, borderBottom will appear and I want to avoid that behavior.
+          ]}
+        >
+          <View>
+            <View style={styles.recieverNameAndDateWrapper}>
+              <Text style={styles.recieverName}>{recieverName}</Text>
+              <Text style={styles.date}>{lastUpdateDate}</Text>
+            </View>
+            <Text>{lastMessage}</Text>
           </View>
-          <Text>{lastMessage}</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -46,7 +63,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 4,
   },
-  image: {
+  profilePhoto: {
     marginRight: 10,
     width: 70,
     height: 70,

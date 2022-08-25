@@ -5,7 +5,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { Chats } from "./Chats";
 import { chats } from "../data/mock-data";
 
-export const Tabs = () => {
+export const Tabs = ({navigation}) => {
   const [tabs] = useState(["CHATS", "STATUS", "CALLS"]);
   const [selectedTab, setSelectedTab] = useState("CHATS");
 
@@ -15,7 +15,7 @@ export const Tabs = () => {
   const displayTabContent = (tab) => { // With this function we display content depends to selected tab.
     switch (tab) {
       case "CHATS":
-        return <Chats chats={chats} />;
+        return <Chats chats={chats} navigation={navigation} />;
       case "STATUS" || "CALLS":
         return <Text>This feature will add.</Text>;
       case "CALLS":
