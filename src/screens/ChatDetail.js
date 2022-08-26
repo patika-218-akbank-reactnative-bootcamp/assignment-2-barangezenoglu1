@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   View,
   TextInput,
@@ -13,6 +13,7 @@ import { TextBox } from "../components/TextBox";
 
 export const ChatDetail = ({ route, navigation }) => {
   const { recieverName, messages, profilePhoto } = route.params;
+  const scrollViewRef = useRef(); // We use current.scrollToEnd for open the detail page from end of the scroll.
   return (
     <View style={{ flex: 1 }}>
       <DetailHeader profilePhoto={profilePhoto} recieverName={recieverName} />
@@ -22,7 +23,12 @@ export const ChatDetail = ({ route, navigation }) => {
         resizeMode="cover"
         style={styles.imageBackground}
       >
-        <ScrollView>
+        <ScrollView
+          ref={scrollViewRef}
+          onContentSizeChange={() =>
+            scrollViewRef.current.scrollToEnd({ animated: true })
+          }
+        >
           {messages.map((message) => {
             return <TextBox key={message.id} message={message.text} />;
           })}
@@ -46,7 +52,7 @@ export const ChatDetail = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   imageBackground: {
-    height: 560,
+    height: 570,
     flex: 1,
   },
   inputAndImage: {
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 50,
     paddingTop: 5,
+    marginLeft: 5,
   },
   image: {
     color: "white",
