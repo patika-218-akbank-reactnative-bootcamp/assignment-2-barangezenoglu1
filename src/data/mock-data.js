@@ -2,7 +2,8 @@ import uuid from "react-native-uuid";
 
 const { v4: uuidv4 } = require("uuid");
 
-function createMockData(number) { // This function is a mock data generator. 
+function createMockData(number) {
+  // This function is a mock data generator.
   let data = [];
   for (let i = 1; i < number; i++) {
     let updatedData = {

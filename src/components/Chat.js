@@ -8,21 +8,25 @@ import {
   Pressable,
 } from "react-native";
 
-const windowWidth = Dimensions.get("window").width; //It's provides your component width equals to screen width.
-export const Chat = ({
+const windowWidth = Dimensions.get("window").width; // It's provides your component width equals to screen width.
+export function Chat({
   navigation,
   recieverName,
   messages,
   lastUpdateDate,
   lastMessage,
   profilePhoto,
-}) => {
+}) {
   return (
-    <Pressable onPress={() => navigation.navigate('ChatDetail', {
-      recieverName: recieverName,
-      messages: messages,
-      profilePhoto: profilePhoto
-    })}>
+    <Pressable
+      onPress={() =>
+        navigation.navigate("ChatDetail", {
+          recieverName,
+          messages,
+          profilePhoto,
+        })
+      }
+    >
       <View style={styles.container}>
         <Image style={styles.profilePhoto} source={{ uri: profilePhoto }} />
         <View
@@ -44,7 +48,7 @@ export const Chat = ({
       </View>
     </Pressable>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
