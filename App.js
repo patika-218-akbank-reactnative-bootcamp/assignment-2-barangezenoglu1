@@ -9,12 +9,15 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-    <SafeAreaView style={{ flex: 1 }}>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="ChatDetail" component={ChatDetail} />
-      </Stack.Navigator>
-    </SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="ChatDetail" component={ChatDetail} />
+        </Stack.Navigator>
+      </SafeAreaView>
     </NavigationContainer>
   );
 }
