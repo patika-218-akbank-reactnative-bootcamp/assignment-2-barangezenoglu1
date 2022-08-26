@@ -14,15 +14,18 @@ function createMockData(number) { // This function is a mock data generator.
       },
       messages: [
         {
-          text: "Message 1",
+          id: 1,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt orci tincidunt, pretium justo ut.",
           dateTime: "11:40",
         },
         {
-          text: "Message 2",
+          id: 2,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at justo volutpat, tristique ex id, imperdiet urna. Quisque eu commodo erat, id aliquam nisi. Sed semper neque ac sapien suscipit, non eleifend justo luctus. Praesent lectus metus, fringilla sit amet ante fringilla, euismod laoreet eros. Duis dignissim enim at accumsan.",
           dateTime: "11:40",
         },
         {
-          text: "Message 3",
+          id: 3,
+          text: "Lorem ipsum dolor sit amet.",
           dateTime: "11:40",
         },
       ],
