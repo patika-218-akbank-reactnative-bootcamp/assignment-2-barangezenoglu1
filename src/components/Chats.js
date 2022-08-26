@@ -15,7 +15,8 @@ export const Chats = ({chats, navigation}) => {
             lastUpdateDate={chat.messages[chat.messages.length -1].dateTime} // In home screen we should see last updated date in every chat.
             lastMessage={chat.messages[chat.messages.length -1].text} // As date we should see last message in every chat.
             profilePhoto={chat.receiver.profilePhoto}
-            messages={chat.mesages}
+            messages={chat.messages}
+            recieverId={chat.receiver.id}
           />
         );
       })}

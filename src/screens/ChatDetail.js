@@ -1,67 +1,85 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Dimensions, Image, Text } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Dimensions,
+  Image,
+  Text,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import { DetailHeader } from "../components/DetailHeader";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import BackgroundImage from "../assets/whatsapp-background.png";
+import { TextBox } from "../components/TextBox";
 
 const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
 export const ChatDetail = ({ route, navigation }) => {
-  const { messageId, recieverName, messages, profilePhoto } = route.params;
+  const { recieverName, messages, profilePhoto } = route.params;
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <DetailHeader profilePhoto={profilePhoto} recieverName={recieverName} />
-      <View style={styles.content}>
-        <Text style={styles.textBox} >baran</Text>
-        <Image source={BackgroundImage} />
-        <View style={styles.inputContainer}>
-          <TextInput style={styles.input}></TextInput>
-          <View style={styles.inputIconContainer}>
-            <FontAwesome name="microphone" style={styles.inputIcon} />
+      <ImageBackground
+        source={BackgroundImage}
+        resizeMode="cover"
+        style={styles.imageBackground}
+      >
+        <ScrollView>
+          {messages.map((message) => {
+            return <TextBox key={message.id} message={message.text} />;
+          })}
+        </ScrollView>
+        <View style={styles.inputAndImage}>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Baran"
+              placeholderTextColor="#000"
+            />
+          </View>
+          <View style={styles.imageWrapper}>
+            <FontAwesome name="microphone" style={styles.image} />
           </View>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  content: {
-    height: windowHeight,
+  imageBackground: {
+    height: 560,
+    flex: 1,
   },
-  textBox: {
-    height: 20,
-    
-    color: 'red'
+  inputAndImage: {
+    display: "flex",
+    flexDirection: "row",
   },
-  inputContainer: {
+  textInputContainer: {
+    borderRadius: 30,
     backgroundColor: "white",
-    position: "absolute",
-    height: 50,
-    width: 320,
-    top: windowHeight - 180,
-    left: 0,
-    right: 0,
-    bottom: 4,
-    marginLeft: 20,
-    borderRadius: 15,
+    height: 40,
+    width: 340,
+    marginBottom: 20,
+    marginLeft: 10,
   },
-  input: {
-    color: "white",
+  textInput: {
+    padding: 10,
   },
-  inputIcon: {
-    fontSize: 30,
-    marginTop: 15,
-    color: "white",
-  },
-  inputIconContainer: {
-    alignItems: "center",
-    fontSize: 30,
-    width: 60,
-    height: 60,
+  imageWrapper: {
     backgroundColor: "#00A884",
-    left: 325,
-    top: -6,
+    height: 50,
+    width: 50,
+    alignItems: 'center',
     borderRadius: 50,
-    position: "absolute",
+    paddingTop: 5
   },
+  image: {
+    color: 'white',
+    fontSize: 30,
+    padding: 5,
+    
+  }
 });

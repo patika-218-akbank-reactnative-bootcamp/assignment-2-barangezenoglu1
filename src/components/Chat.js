@@ -11,16 +11,14 @@ import {
 const windowWidth = Dimensions.get("window").width; //It's provides your component width equals to screen width.
 export const Chat = ({
   navigation,
-  id,
   recieverName,
   messages,
   lastUpdateDate,
   lastMessage,
-  profilePhoto
+  profilePhoto,
 }) => {
   return (
     <Pressable onPress={() => navigation.navigate('ChatDetail', {
-      messageId: id,
       recieverName: recieverName,
       messages: messages,
       profilePhoto: profilePhoto
