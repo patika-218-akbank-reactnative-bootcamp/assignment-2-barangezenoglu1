@@ -42,7 +42,7 @@ export function Chat({
               <Text style={styles.recieverName}>{recieverName}</Text>
               <Text style={styles.date}>{lastUpdateDate}</Text>
             </View>
-            <Text>{lastMessage}</Text>
+            <Text style={styles.lastMessage} numberOfLines={1} ellipsizeMode='tail'>{lastMessage}</Text>
           </View>
         </View>
       </View>
@@ -85,4 +85,7 @@ const styles = StyleSheet.create({
   date: {
     color: "grey",
   },
+  lastMessage: {
+    width: '48%'
+  }
 });
