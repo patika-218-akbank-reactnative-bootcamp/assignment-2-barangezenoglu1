@@ -3,9 +3,6 @@ import {
   View,
   TextInput,
   StyleSheet,
-  Dimensions,
-  Image,
-  Text,
   ScrollView,
   ImageBackground,
 } from "react-native";
@@ -14,14 +11,13 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import BackgroundImage from "../assets/whatsapp-background.png";
 import { TextBox } from "../components/TextBox";
 
-const windowHeight = Dimensions.get("window").height;
-const windowWidth = Dimensions.get("window").width;
 export const ChatDetail = ({ route, navigation }) => {
   const { recieverName, messages, profilePhoto } = route.params;
   return (
     <View style={{ flex: 1 }}>
       <DetailHeader profilePhoto={profilePhoto} recieverName={recieverName} />
       <ImageBackground
+        // Whatsap chat detail original background.
         source={BackgroundImage}
         resizeMode="cover"
         style={styles.imageBackground}
@@ -35,7 +31,7 @@ export const ChatDetail = ({ route, navigation }) => {
           <View style={styles.textInputContainer}>
             <TextInput
               style={styles.textInput}
-              placeholder="Baran"
+              placeholder="Type a message"
               placeholderTextColor="#000"
             />
           </View>
@@ -67,19 +63,19 @@ const styles = StyleSheet.create({
   },
   textInput: {
     padding: 10,
+    marginLeft: 15,
   },
   imageWrapper: {
     backgroundColor: "#00A884",
     height: 50,
     width: 50,
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 50,
-    paddingTop: 5
+    paddingTop: 5,
   },
   image: {
-    color: 'white',
+    color: "white",
     fontSize: 30,
     padding: 5,
-    
-  }
+  },
 });
